@@ -6,13 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerMovementTest : MonoBehaviour
 {
     #region Serialized Variables
-    [SerializeField] private CharacterController2D _charController;
     [SerializeField] private float playerSpeed = 1f;
     #endregion
 
     #region Private Variables
+    private CharacterController2D _charController;
     private float _horizontal;
-    private Rigidbody2D _rg2D;
     private Vector2 _moveDirection;
     private bool _isJumping = false;
     #endregion
@@ -20,7 +19,7 @@ public class PlayerMovementTest : MonoBehaviour
     #region Unity Callbacks
     void Start()
     {
-        _rg2D = GetComponent<Rigidbody2D>();
+        _charController = GetComponent<CharacterController2D>();
     }
 
     void Update()
