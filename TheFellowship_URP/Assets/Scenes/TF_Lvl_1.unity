@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gmData: {fileID: 11400000, guid: df9621a4840cff2478822b611a7ad63f, type: 2}
   pausePanel: {fileID: 549607996}
+  firstSelectedPauseButton: {fileID: 713700267}
   fadeBG: {fileID: 175356095}
 --- !u!4 &131855958
 Transform:

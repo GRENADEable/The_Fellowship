@@ -13,10 +13,9 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private InputAction _move;
     private CharacterController2D _charController;
-    private float _horizontal;
-    private Vector2 _moveDirection;
+    [SerializeField] private float _horizontal;
+    [SerializeField] private Vector2 _moveDirection;
     private bool _isJumping = false;
     #endregion
 
@@ -33,6 +32,8 @@ public class PlayerController : MonoBehaviour
         {
             PlayerMovement();
         }
+        else
+            _charController.Move(0, false, false);
     }
     #endregion
 
@@ -54,7 +55,7 @@ public class PlayerController : MonoBehaviour
     /// <param name="context"> Callback context for checking if the input presed state; </param>
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.started && gmData.currGameState == GameManagerData.GameState.Game)
             _horizontal = context.ReadValue<Vector2>().x;
         else if (context.canceled)
             _horizontal = 0f;
@@ -70,6 +71,12 @@ public class PlayerController : MonoBehaviour
             _isJumping = true;
     }
     #endregion
+
+    void OnGamePausedEventReceived(bool isPaused)
+    {
+        //if(isPaused)
+        //    hori
+    }
 
     #endregion
 }

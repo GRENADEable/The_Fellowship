@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Inputs/PlayerControlsTestAsset.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Inputs/PlayerControlsAsset.inputactions'
 
 using System;
 using System.Collections;
@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-public class @PlayerControlsTestAsset : IInputActionCollection, IDisposable
+public class @PlayerControlsAsset : IInputActionCollection, IDisposable
 {
     public InputActionAsset asset { get; }
-    public @PlayerControlsTestAsset()
+    public @PlayerControlsAsset()
     {
         asset = InputActionAsset.FromJson(@"{
-    ""name"": ""PlayerControlsTestAsset"",
+    ""name"": ""PlayerControlsAsset"",
     ""maps"": [
         {
             ""name"": ""Player"",
@@ -844,8 +844,8 @@ public class @PlayerControlsTestAsset : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
-        private @PlayerControlsTestAsset m_Wrapper;
-        public PlayerActions(@PlayerControlsTestAsset wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControlsAsset m_Wrapper;
+        public PlayerActions(@PlayerControlsAsset wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
@@ -905,8 +905,8 @@ public class @PlayerControlsTestAsset : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_RightClick;
     public struct UIActions
     {
-        private @PlayerControlsTestAsset m_Wrapper;
-        public UIActions(@PlayerControlsTestAsset wrapper) { m_Wrapper = wrapper; }
+        private @PlayerControlsAsset m_Wrapper;
+        public UIActions(@PlayerControlsAsset wrapper) { m_Wrapper = wrapper; }
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
         public InputAction @Submit => m_Wrapper.m_UI_Submit;
         public InputAction @Cancel => m_Wrapper.m_UI_Cancel;

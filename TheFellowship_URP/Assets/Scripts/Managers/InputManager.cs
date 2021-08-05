@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     #region Public Variables
-    public static PlayerControlsTestAsset inputActions = new PlayerControlsTestAsset();
+    public static PlayerControlsAsset inputActions = new PlayerControlsAsset();
     public static event Action<InputActionMap> OnActionMapChange;
     #endregion
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class GameManagerLvl : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameManagerLvl : MonoBehaviour
     [Space, Header("UI")]
     //[SerializeField] private GameObject hudPanel;
     [SerializeField] private GameObject pausePanel;
+    //[SerializeField] private GameObject[] firstSelectedButtons;
+    [SerializeField] private GameObject firstSelectedPauseButton;
 
     [SerializeField] private Animator fadeBG;
     #endregion
@@ -52,6 +55,12 @@ public class GameManagerLvl : MonoBehaviour
     #endregion
 
     #region My Functions
+    //public void OnClickHighlightedButton(int index)
+    //{
+    //    EventSystem.current.SetSelectedGameObject(null);
+    //    EventSystem.current.SetSelectedGameObject(firstSelectedButtons[index]);
+    //}
+
     public void OnClick_ResumeGame()
     {
         InputManager.ToggleActionMap(InputManager.inputActions.Player);
@@ -67,10 +76,14 @@ public class GameManagerLvl : MonoBehaviour
     {
         if (context.started && gmData.currGameState == GameManagerData.GameState.Game)
         {
+
             gmData.ChangeGameState("Paused");
             //hudPanel.SetActive(false);
             pausePanel.SetActive(true);
             InputManager.ToggleActionMap(InputManager.inputActions.UI);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstSelectedPauseButton);
+            //OnClickHighlightedButton(1);
         }
     }
     #endregion
