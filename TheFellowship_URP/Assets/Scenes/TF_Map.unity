@@ -914,6 +914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 055ae80957cce30419a772cd1d5a183c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gmData: {fileID: 11400000, guid: df9621a4840cff2478822b611a7ad63f, type: 2}
   fadeBG: {fileID: 900249397}
 --- !u!1 &1210924448
 GameObject:

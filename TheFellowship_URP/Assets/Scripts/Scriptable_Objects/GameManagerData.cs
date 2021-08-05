@@ -10,6 +10,13 @@ public class GameManagerData : ScriptableObject
     #endregion
 
     #region My Functions
+
+    #region Scenes
+    public void ChangeMap(int index) => Application.LoadLevel(index);
+
+    public void Quit() => Application.Quit();
+    #endregion
+
     public void ChangeGameState(string state)
     {
         if (state == "Menu")

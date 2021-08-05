@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameManagerMap : MonoBehaviour
 {
     #region Serialzed Variables
+    [SerializeField] private GameManagerData gmData;
+
     [SerializeField] private Animator fadeBG;
     #endregion
 
@@ -33,7 +35,7 @@ public class GameManagerMap : MonoBehaviour
     {
         fadeBG.Play("Fade_Out");
         yield return new WaitForSeconds(1f);
-        Application.LoadLevel(index);
+        gmData.ChangeMap(index);
     }
     #endregion
 }

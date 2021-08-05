@@ -184,8 +184,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gmData: {fileID: 11400000, guid: df9621a4840cff2478822b611a7ad63f, type: 2}
   pausePanel: {fileID: 549607996}
-  firstSelectedPauseButton: {fileID: 713700267}
   fadeBG: {fileID: 175356095}
+  gameButtons:
+  - {fileID: 753961586}
+  - {fileID: 713700268}
+  - {fileID: 1852441833}
+  firstSelectedPauseButton: {fileID: 713700267}
 --- !u!4 &131855958
 Transform:
   m_ObjectHideFlags: 0
@@ -377,7 +381,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183420860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.14, y: 6.71, z: 0}
+  m_LocalPosition: {x: -4.14, y: 5.52, z: 0}
   m_LocalScale: {x: 0.9223, y: 1.8813, z: 1}
   m_Children:
   - {fileID: 27416524}
@@ -561,6 +565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gmData: {fileID: 11400000, guid: df9621a4840cff2478822b611a7ad63f, type: 2}
   playerSpeed: 50
+  _horizontal: 0
+  _moveDirection: {x: 0, y: 0}
 --- !u!114 &183420867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1542,7 +1548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 2
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 753961586}
     m_SelectOnDown: {fileID: 1852441833}
@@ -1554,7 +1560,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
-    m_DisabledColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
+    m_DisabledColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1695,8 +1701,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
-    m_WrapAround: 0
+    m_Mode: 2
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 1852441833}
     m_SelectOnDown: {fileID: 713700268}
     m_SelectOnLeft: {fileID: 0}
@@ -1707,7 +1713,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
-    m_DisabledColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
+    m_DisabledColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1725,7 +1731,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 753961587}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 131855957}
+        m_TargetAssemblyTypeName: GameManagerLvl, Assembly-CSharp
+        m_MethodName: OnClick_Menu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &753961587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2406,7 +2424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 4
+    m_Mode: 2
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 713700268}
     m_SelectOnDown: {fileID: 753961586}
@@ -2418,7 +2436,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.6509804, g: 0.6509804, b: 0.6509804, a: 1}
-    m_DisabledColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0.5019608}
+    m_DisabledColor: {r: 0.8, g: 0.8, b: 0.8, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2432,7 +2450,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1852441834}
   m_OnClick:
     m_PersistentCalls:
