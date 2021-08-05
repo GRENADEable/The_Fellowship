@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementTest : MonoBehaviour
+public class PlayerControllerTest : MonoBehaviour
 {
     #region Serialized Variables
     [SerializeField] private float playerSpeed = 1f;
     #endregion
 
     #region Private Variables
+    private InputAction _move;
     private CharacterController2D _charController;
     private float _horizontal;
     private Vector2 _moveDirection;
@@ -17,6 +18,7 @@ public class PlayerMovementTest : MonoBehaviour
     #endregion
 
     #region Unity Callbacks
+
     void Start()
     {
         _charController = GetComponent<CharacterController2D>();

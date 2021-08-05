@@ -1,5 +1,5 @@
 {
-    "name": "Player_Controls_Test",
+    "name": "PlayerControlsTestAsset",
     "maps": [
         {
             "name": "Player",
@@ -25,6 +25,14 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "f22c7248-1d42-4105-adef-14884854cfdd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "9bf898fd-71a8-4dff-98d5-e09fe0ae4142",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -204,6 +212,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "807185eb-11ba-47b6-928a-9215b1869a6e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
