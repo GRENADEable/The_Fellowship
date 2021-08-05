@@ -45,13 +45,9 @@ public class PlayerMovementTest : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.performed)
-        {
             _horizontal = context.ReadValue<Vector2>().x;
-        }
         else if (context.canceled)
-        {
             _horizontal = 0f;
-        }
     }
 
     /// <summary>

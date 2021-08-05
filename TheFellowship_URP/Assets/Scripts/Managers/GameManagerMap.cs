@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class GameManagerMap : MonoBehaviour
 {
-    #region Public Variables
-
-    #endregion
-
     #region Serialzed Variables
     [SerializeField] private Animator fadeBG;
     #endregion
@@ -29,6 +25,15 @@ public class GameManagerMap : MonoBehaviour
     #endregion
 
     #region My Functions
+    public void OnClick_Lvl(int index) => StartCoroutine(StartLvlDelay(index));
+    #endregion
 
+    #region Coroutines
+    IEnumerator StartLvlDelay(int index)
+    {
+        fadeBG.Play("Fade_Out");
+        yield return new WaitForSeconds(1f);
+        Application.LoadLevel(index);
+    }
     #endregion
 }
