@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac5a0866760f3b40b35a9550ef1f257, type: 3}
+  m_Name: "A\xEBthan_Data"
+  m_EditorClassIdentifier: 
+  index: 4
+  playerPrefab: {fileID: 5916058610567399638, guid: fa00d9c7c60acc24690321ff779558fc, type: 3}
+  playerName: "A\xEBthan"
+  playerWeapon: Long Bow
+  strength: 2
+  speed: 50
+  atkRange: 5
+  atkRate: 1

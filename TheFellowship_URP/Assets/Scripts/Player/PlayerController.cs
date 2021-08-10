@@ -8,14 +8,14 @@ public class PlayerController : MonoBehaviour
     #region Serialized Variables
     [Space, Header("Datas")]
     [SerializeField] private GameManagerData gmData;
-
-    [SerializeField] private float playerSpeed = 1f;
+    [SerializeField] private PlayerStatsData plyStatsData;
     #endregion
 
     #region Private Variables
+    [SerializeField] private float _currSpeed;
     private CharacterController2D _charController;
-    [SerializeField] private float _horizontal;
-    [SerializeField] private Vector2 _moveDirection;
+    private float _horizontal;
+    private Vector2 _moveDirection;
     private bool _isJumping = false;
     #endregion
 
@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Intialise();
         _charController = GetComponent<CharacterController2D>();
     }
 
@@ -38,10 +39,21 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region My Functions
+    /// <summary>
+    /// Intialise variables from ScriptableObject Data;
+    /// </summary>
+    void Intialise()
+    {
+        _currSpeed = plyStatsData.speed;
+    }
+
+    /// <summary>
+    /// Function to move the Player on one Axis;
+    /// </summary>
     void PlayerMovement()
     {
         _moveDirection = new Vector2(_horizontal, 0f).normalized;
-        _charController.Move(_moveDirection.x * Time.fixedDeltaTime * playerSpeed, false, _isJumping);
+        _charController.Move(_moveDirection.x * Time.fixedDeltaTime * _currSpeed, false, _isJumping);
         _isJumping = false;
     }
     #endregion

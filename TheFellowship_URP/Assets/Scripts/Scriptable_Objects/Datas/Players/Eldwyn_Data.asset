@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ac5a0866760f3b40b35a9550ef1f257, type: 3}
+  m_Name: Eldwyn_Data
+  m_EditorClassIdentifier: 
+  index: 7
+  playerPrefab: {fileID: 5916058610567399638, guid: 3e87b411f86895f41bf7b0ada49a6923, type: 3}
+  playerName: Eldwyn
+  playerWeapon: Animal Spell
+  strength: 2
+  speed: 50
+  atkRange: 3
+  atkRate: 3
