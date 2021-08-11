@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
 
 public class SelectionButton : MonoBehaviour
 {
@@ -14,7 +11,7 @@ public class SelectionButton : MonoBehaviour
     public delegate void SendEventInt(int index);
     /// <summary>
     /// Event sent from SelectionButton to GameManagerLvl Script;
-    /// This event just sends the index that can be used for referring the array of scriptable objects;
+    /// This event just sends the index that can be used for referring the List of scriptable objects;
     /// </summary>
     public static event SendEventInt OnPlayerSelected;
     #endregion
@@ -24,10 +21,7 @@ public class SelectionButton : MonoBehaviour
     #endregion
 
     #region Unity Callbacks
-    void Start()
-    {
-        _selectButton = GetComponent<Button>();
-    }
+    void Start() => _selectButton = GetComponent<Button>();
     #endregion
 
     #region My Functions

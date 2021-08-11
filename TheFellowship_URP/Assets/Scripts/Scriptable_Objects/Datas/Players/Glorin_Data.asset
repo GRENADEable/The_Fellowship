@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ac5a0866760f3b40b35a9550ef1f257, type: 3}
-  m_Name: Astris_Data
+  m_Name: Glorin_Data
   m_EditorClassIdentifier: 
-  index: 1
-  playerPrefab: {fileID: 5916058610567399638, guid: bca6e67421f7a0c49879506f0c09293a, type: 3}
-  playerName: Astris
-  playerWeapon: Spear
-  strength: 3
-  speed: 50
-  atkRange: 2
-  atkRate: 3
+  index: 7
+  playerPrefab: {fileID: 5916058610567399638, guid: 3e87b411f86895f41bf7b0ada49a6923, type: 3}
+  playerName: Glorin
+  playerWeapon: Mech Fist
+  strength: 5
+  speed: 40
+  atkRange: 3
+  atkRate: 1

@@ -215,19 +215,7 @@ MonoBehaviour:
     m_ActionId: e158921d-068b-41bb-9c17-2d9a2037997a
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManagerLvl, Assembly-CSharp
-        m_MethodName: OnPause
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 9bf898fd-71a8-4dff-98d5-e09fe0ae4142
     m_ActionName: Player/Pause[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
@@ -340,6 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gmData: {fileID: 11400000, guid: df9621a4840cff2478822b611a7ad63f, type: 2}
   plyStatsData: {fileID: 11400000, guid: e811146b093f4114aa2d9b7d00b425f4, type: 2}
+  _currSpeed: 0
 --- !u!1 &5916058610714957985
 GameObject:
   m_ObjectHideFlags: 0

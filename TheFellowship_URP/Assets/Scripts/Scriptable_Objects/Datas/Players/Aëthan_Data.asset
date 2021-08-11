@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: "A\xEBthan"
   playerWeapon: Long Bow
   strength: 2
-  speed: 50
+  speed: 60
   atkRange: 5
   atkRate: 1

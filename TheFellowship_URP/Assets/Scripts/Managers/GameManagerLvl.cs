@@ -38,11 +38,15 @@ public class GameManagerLvl : MonoBehaviour
     private GameObject choosePanel;
 
     [SerializeField]
+    [Tooltip("Total players you can select")]
+    private int totalSelectedPlayers = 9;
+
+    [SerializeField]
     [Tooltip("Player selection Button Prefab")]
     private GameObject buttonPrefab;
 
     [SerializeField]
-    [Tooltip("Player selection Button spawn points")]
+    [Tooltip("Player selection Button spawn point")]
     private Transform buttonPos;
 
     [SerializeField]
@@ -54,7 +58,22 @@ public class GameManagerLvl : MonoBehaviour
     [Space, Header("Game Session")]
     [SerializeField]
     [Tooltip("Trasnform component for spawning players")]
-    private Transform[] playerSpawns;
+    private Transform playerSpawn;
+    #endregion
+
+    #region Switch Player Panel
+    [Space, Header("Switch Player Panel")]
+    [SerializeField]
+    [Tooltip("Player switch panel GameObject")]
+    private GameObject switchPanel;
+
+    [SerializeField]
+    [Tooltip("Player switch Button Prefab")]
+    private GameObject switchButtonPrefab;
+
+    [SerializeField]
+    [Tooltip("Player switch Button spawn point")]
+    private Transform switchButtonPos;
     #endregion
 
     #region Buttons
@@ -76,7 +95,11 @@ public class GameManagerLvl : MonoBehaviour
     #region Private Variables
     private List<PlayerStatsData> _currCharSelection = new List<PlayerStatsData>();
     private List<Button> _chooseButtons = new List<Button>();
+    private List<Button> _switchButtons = new List<Button>();
     private int _currSelectedPlayers;
+    private PlayerInput _plyInput;
+    private GameObject _currActivePlayer;
+    private GameObject _currActivePlayerButton;
     #endregion
 
     #region Unity Callbacks
@@ -85,22 +108,28 @@ public class GameManagerLvl : MonoBehaviour
     void OnEnable()
     {
         InputManager.inputActions.Player.Pause.performed += OnPause;
+        InputManager.inputActions.Player.Pause.performed += OnSwitch;
 
         SelectionButton.OnPlayerSelected += OnPlayerSelectedEventReceived;
+        SwitchButton.OnPlayerSwitchSelected += OnPlayerSwitchSelectedEventReceived;
     }
 
     void OnDisable()
     {
         InputManager.inputActions.Player.Pause.performed -= OnPause;
+        InputManager.inputActions.Player.Pause.performed -= OnSwitch;
 
         SelectionButton.OnPlayerSelected -= OnPlayerSelectedEventReceived;
+        SwitchButton.OnPlayerSwitchSelected -= OnPlayerSwitchSelectedEventReceived;
     }
 
     void OnDestroy()
     {
         InputManager.inputActions.Player.Pause.performed -= OnPause;
+        InputManager.inputActions.Player.Pause.performed -= OnSwitch;
 
         SelectionButton.OnPlayerSelected -= OnPlayerSelectedEventReceived;
+        SwitchButton.OnPlayerSwitchSelected -= OnPlayerSwitchSelectedEventReceived;
     }
     #endregion
 
@@ -108,6 +137,7 @@ public class GameManagerLvl : MonoBehaviour
     {
         fadeBG.Play("Fade_In");
         gmData.ChangeGameState("Intro");
+        _plyInput = GetComponent<PlayerInput>();
         IntialiseSelectionButtons();
     }
 
@@ -203,17 +233,63 @@ public class GameManagerLvl : MonoBehaviour
     /// </summary>
     public void OnClick_StartGame()
     {
+        GameObject charObj = Instantiate(_currCharSelection[0].playerPrefab, playerSpawn.position, Quaternion.identity);
+        OnCharSpawn?.Invoke(charObj);
+        _currActivePlayer = charObj;
+
         choosePanel.SetActive(false);
-        OnStartIntialise();
+        gmData.ChangeGameState("Game");
+        _plyInput.enabled = true;
+        SelectedPlayers();
+    }
+    #endregion
+
+    #region Player Switch
+    /// <summary>
+    /// Button tied to Back_Button Button;
+    /// Disables the switch GameObject panel;
+    /// </summary>
+    public void OnClick_SwitchPanelBack()
+    {
+        switchPanel.SetActive(false);
+        gmData.ChangeGameState("Game");
     }
 
-    void OnStartIntialise()
+    /// <summary>
+    /// This just shows the player buttons the players can switch. 
+    /// This depends on what the player selected on the start of the player selection screen;
+    /// </summary>
+    void SelectedPlayers()
     {
+        int index = 0;
+
         for (int i = 0; i < _currCharSelection.Count; i++)
         {
-            GameObject charObj = Instantiate(_currCharSelection[i].playerPrefab, playerSpawns[i].position, Quaternion.identity);
-            OnCharSpawn?.Invoke(charObj);
+            GameObject buttonSwitchObj = Instantiate(switchButtonPrefab, switchButtonPos.position, Quaternion.identity, switchButtonPos);
+            buttonSwitchObj.name = $"{_currCharSelection[i].playerName}_Button";
+
+            _switchButtons.Add(buttonSwitchObj.GetComponent<Button>());
+
+            SwitchButton switchPlayer = buttonSwitchObj.GetComponent<SwitchButton>();
+            switchPlayer.switchButtonText.text = _currCharSelection[i].playerName;
+            switchPlayer.switchIndex = index;
+            index++;
         }
+
+        _currActivePlayerButton = _switchButtons[0].gameObject;
+    }
+
+    /// <summary>
+    /// This spawns the new player according to the Index;
+    /// </summary>
+    /// <param name="index"> Index used to access the selected players in the list of Scriptable Objects; </param>
+    void SwitchToNewPlayer(int index)
+    {
+        GameObject charObj = Instantiate(_currCharSelection[index].playerPrefab, playerSpawn.position, Quaternion.identity);
+        OnCharSpawn?.Invoke(charObj);
+        _currActivePlayer = charObj;
+
+        _currActivePlayerButton = _switchButtons[index].gameObject;
     }
     #endregion
 
@@ -223,20 +299,36 @@ public class GameManagerLvl : MonoBehaviour
 
     #region Input Systems
     /// <summary>
-    /// Tied to Player Input event for pausing;
+    /// Tied to Manager GameObject Player Input event for pausing;
     /// </summary>
     /// <param name="context"> Callback context for checking if the input presed state; </param>
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.started && gmData.currGameState == GameManagerData.GameState.Game)
         {
-
             gmData.ChangeGameState("Paused");
-            //hudPanel.SetActive(false);
             pausePanel.SetActive(true);
+
             InputManager.ToggleActionMap(InputManager.inputActions.UI);
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(firstSelectedPauseButton);
+        }
+    }
+
+    /// <summary>
+    /// Tied to Manager GameObject Player Input event for switching;
+    /// </summary>
+    /// <param name="context"> Callback context for checking if the input presed state; </param>
+    public void OnSwitch(InputAction.CallbackContext context)
+    {
+        if (context.started && gmData.currGameState == GameManagerData.GameState.Game)
+        {
+            gmData.ChangeGameState("PlayerSwap");
+            switchPanel.SetActive(true);
+
+            InputManager.ToggleActionMap(InputManager.inputActions.UI);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(_currActivePlayerButton);
         }
     }
     #endregion
@@ -251,7 +343,7 @@ public class GameManagerLvl : MonoBehaviour
         _currCharSelection.Add(plyStatDatas[index]);
         _currSelectedPlayers++;
 
-        if (_currSelectedPlayers >= 4)
+        if (_currSelectedPlayers >= totalSelectedPlayers)
         {
             startButton.interactable = true;
 
@@ -260,6 +352,21 @@ public class GameManagerLvl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Subbed to event from SwitchButton Scriptl
+    /// This just selects the player according to the index;
+    /// </summary>
+    /// <param name="index"> Index used to check the scriptable object list </param>
+    void OnPlayerSwitchSelectedEventReceived(int index, GameObject obj)
+    {
+        Destroy(_currActivePlayer);
+        _currActivePlayer = null;
+
+        SwitchToNewPlayer(index);
+
+        switchPanel.SetActive(false);
+        gmData.ChangeGameState("Game");
+    }
     #endregion
 
     #region Coroutines

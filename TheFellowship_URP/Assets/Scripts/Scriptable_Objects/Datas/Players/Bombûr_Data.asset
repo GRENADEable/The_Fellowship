@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: "Bomb\xFBr"
   playerWeapon: Shotgun
   strength: 3
-  speed: 40
+  speed: 50
   atkRange: 3
   atkRate: 1

@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class PlayersStatsButton : MonoBehaviour
+public class PlayersStatsButtonTest : MonoBehaviour
 {
     #region Serialised Variables
     [SerializeField] private GameObject playerObj;
@@ -11,6 +11,9 @@ public class PlayersStatsButton : MonoBehaviour
 
     public delegate void SendEvents();
     public static event SendEvents OnPlayerSpawned;
+
+    public delegate void SendEventsObj(GameObject obj);
+    public static event SendEventsObj OnPlayerObj;
     #endregion
 
     #region Private Variables
@@ -20,11 +23,11 @@ public class PlayersStatsButton : MonoBehaviour
     #region Unity Callbacks
 
     #region Events
-    void OnEnable() => PlayersStatsButton.OnPlayerSpawned += OnPlayerSpawnedEventRecieved;
+    void OnEnable() => PlayersStatsButtonTest.OnPlayerSpawned += OnPlayerSpawnedEventRecieved;
 
-    void OnDisable() => PlayersStatsButton.OnPlayerSpawned -= OnPlayerSpawnedEventRecieved;
+    void OnDisable() => PlayersStatsButtonTest.OnPlayerSpawned -= OnPlayerSpawnedEventRecieved;
 
-    void OnDestroy() => PlayersStatsButton.OnPlayerSpawned -= OnPlayerSpawnedEventRecieved;
+    void OnDestroy() => PlayersStatsButtonTest.OnPlayerSpawned -= OnPlayerSpawnedEventRecieved;
     #endregion
 
     #endregion
@@ -34,6 +37,7 @@ public class PlayersStatsButton : MonoBehaviour
     {
         OnPlayerSpawned?.Invoke();
         _spawnedPlayer = Instantiate(playerObj, playerPos.position, Quaternion.identity);
+        OnPlayerObj?.Invoke(_spawnedPlayer);
         speedText.text = $"Speed : {statSpeed}";
     }
     #endregion

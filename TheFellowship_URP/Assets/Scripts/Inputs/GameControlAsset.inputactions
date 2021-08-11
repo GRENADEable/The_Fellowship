@@ -1,0 +1,52 @@
+{
+    "name": "GameControlAsset",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "f4a97227-c5d2-4ba3-ae7a-9b0df3588445",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "097187ab-6585-41d9-a819-df9f3dfe61be",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Switch_Player",
+                    "type": "Button",
+                    "id": "1302cb77-3cd5-4c02-b561-ca2060771e77",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e5a9294d-6f67-41ff-83e9-8b62b9279458",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bea0a46b-c3f2-472d-9ae6-10369f9485a9",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Switch_Player",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

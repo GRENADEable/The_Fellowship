@@ -17,11 +17,11 @@ public class CamTargetGroup : MonoBehaviour
     #region Unity Callbacks
 
     #region Events
-    void OnEnable() => GameManagerLvl.OnCharSpawn += OnCharSpawnEventReceieved;
+    //void OnEnable() => GameManagerLvl.OnCharSpawn += OnCharSpawnEventReceieved;
 
-    void OnDisable() => GameManagerLvl.OnCharSpawn -= OnCharSpawnEventReceieved;
+    //void OnDisable() => GameManagerLvl.OnCharSpawn -= OnCharSpawnEventReceieved;
 
-    void OnDestroy() => GameManagerLvl.OnCharSpawn -= OnCharSpawnEventReceieved;
+    //void OnDestroy() => GameManagerLvl.OnCharSpawn -= OnCharSpawnEventReceieved;
     #endregion
 
     void Start() => _cTarget = GetComponent<CinemachineTargetGroup>();
