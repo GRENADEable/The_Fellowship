@@ -1,18 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     #region Serialized Variables
+
+    #region Datas
     [Space, Header("Datas")]
-    [SerializeField] private GameManagerData gmData;
-    [SerializeField] private PlayerStatsData plyStatsData;
+    [SerializeField]
+    [Tooltip("GameManager Scriptable Object")]
+    private GameManagerData gmData;
+
+    [SerializeField]
+    [Tooltip("PlayerStats Scriptable Object")]
+    private PlayerStatsData plyStatsData;
+    #endregion
+
+    [Space, Header("Player Stats")]
+    [SerializeField]
+    [Tooltip("Starting stamina of the Player")]
+    private float startingStamina = 30f;
+
+    //[SerializeField]
+    //[Tooltip("Position where the Canvas will spawn")]
+    //private Transform staminaCanvasPos;
+
+    //[SerializeField]
+    //private Vector3 sliderOffset;
     #endregion
 
     #region Private Variables
-    [SerializeField] private float _currSpeed;
+    [SerializeField] private float _currStamina;
+    //private GameObject _sliderObj;
+    [SerializeField] private Slider _staminaSlider;
+    private float _currSpeed;
     private CharacterController2D _charController;
     private float _horizontal;
     private Vector2 _moveDirection;
@@ -21,20 +45,38 @@ public class PlayerController : MonoBehaviour
 
     #region Unity Callbacks
 
+    #region Events
+    void OnEnable()
+    {
+        GameManagerLvl.OnSliderSpawn += OnSliderSpawnEventReceived;
+    }
+
+    void OnDisable()
+    {
+        GameManagerLvl.OnSliderSpawn -= OnSliderSpawnEventReceived;
+    }
+
+    void OnDestroy()
+    {
+        GameManagerLvl.OnSliderSpawn -= OnSliderSpawnEventReceived;
+    }
+    #endregion
+
     void Start()
     {
         Intialise();
         _charController = GetComponent<CharacterController2D>();
+        _staminaSlider = GetComponentInChildren<Slider>();
     }
 
     void Update()
     {
         if (gmData.currGameState == GameManagerData.GameState.Game)
-        {
             PlayerMovement();
-        }
         else
             _charController.Move(0, false, false);
+
+        //_sliderObj.transform.position = transform.position;
     }
     #endregion
 
@@ -45,6 +87,7 @@ public class PlayerController : MonoBehaviour
     void Intialise()
     {
         _currSpeed = plyStatsData.speed;
+        _currStamina = startingStamina;
     }
 
     /// <summary>
@@ -83,6 +126,12 @@ public class PlayerController : MonoBehaviour
             _isJumping = true;
     }
     #endregion
+
+    void OnSliderSpawnEventReceived(GameObject obj)
+    {
+        //_sliderObj = Instantiate(obj, transform.position + sliderOffset, Quaternion.identity);
+        //_staminaSlider = _sliderObj.GetComponentInChildren<Slider>();
+    }
 
     #endregion
 }

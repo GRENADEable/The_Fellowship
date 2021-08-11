@@ -76,8 +76,8 @@ public class GameManagerLvl : MonoBehaviour
     private Transform switchButtonPos;
     #endregion
 
-    #region Buttons
-    [Space, Header("Buttons")]
+    #region Pause UI
+    [Space, Header("Pause UI")]
     [SerializeField]
     [Tooltip("All the Buttons in the pause panel")]
     private Button[] gameButtons;
@@ -87,8 +87,16 @@ public class GameManagerLvl : MonoBehaviour
     private GameObject firstSelectedPauseButton;
     #endregion
 
+    #region Stamina UI
+    [Space, Header("Stamina UI")]
+    [SerializeField]
+    [Tooltip("Stamina Slider Prefab")]
+    private GameObject staminaPrefab;
+    #endregion
+
     public delegate void SendEventsObj(GameObject obj);
     public static event SendEventsObj OnCharSpawn;
+    public static event SendEventsObj OnSliderSpawn;
     #endregion
 
     #region Private Variables
@@ -236,6 +244,8 @@ public class GameManagerLvl : MonoBehaviour
         OnCharSpawn?.Invoke(charObj);
         _currActivePlayer = charObj;
 
+        OnSliderSpawn?.Invoke(staminaPrefab);
+
         choosePanel.SetActive(false);
         gmData.ChangeGameState("Game");
         _plyInput.enabled = true;
@@ -287,8 +297,10 @@ public class GameManagerLvl : MonoBehaviour
         GameObject charObj = Instantiate(_currCharSelection[index].playerPrefab, playerSpawn.position, Quaternion.identity);
         OnCharSpawn?.Invoke(charObj);
         _currActivePlayer = charObj;
-
         _currActivePlayerButton = _switchButtons[index].gameObject;
+
+        OnSliderSpawn?.Invoke(staminaPrefab);
+
     }
     #endregion
 
