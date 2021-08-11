@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CamFollowTest : MonoBehaviour
+public class CamFollow : MonoBehaviour
 {
     #region Public Variables
 
@@ -38,16 +36,14 @@ public class CamFollowTest : MonoBehaviour
     }
     #endregion
 
-    void Start()
-    {
-        _VCam = GetComponent<CinemachineVirtualCamera>();
-    }
+    void Start() => _VCam = GetComponent<CinemachineVirtualCamera>();
     #endregion
 
     #region Events
     void OnPlayerObjEventReceived(GameObject obj)
     {
         _VCam.m_Follow = obj.transform;
+        _VCam.m_LookAt = obj.transform;
     }
     #endregion
 }

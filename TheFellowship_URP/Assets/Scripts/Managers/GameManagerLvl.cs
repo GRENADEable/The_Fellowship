@@ -89,7 +89,6 @@ public class GameManagerLvl : MonoBehaviour
 
     public delegate void SendEventsObj(GameObject obj);
     public static event SendEventsObj OnCharSpawn;
-
     #endregion
 
     #region Private Variables

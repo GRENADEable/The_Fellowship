@@ -15,18 +15,6 @@ public class SwitchButton : MonoBehaviour
     public static event SendEventIntObject OnPlayerSwitchSelected;
     #endregion
 
-    #region Unity Callbacks
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-    #endregion
-
     #region My Functions
     public void OnClick_SwitchPlayer() => OnPlayerSwitchSelected?.Invoke(switchIndex, gameObject);
     #endregion
