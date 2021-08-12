@@ -23,19 +23,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Tooltip("Starting stamina of the Player")]
     private float startingStamina = 30f;
-
-    //[SerializeField]
-    //[Tooltip("Position where the Canvas will spawn")]
-    //private Transform staminaCanvasPos;
-
-    //[SerializeField]
-    //private Vector3 sliderOffset;
     #endregion
 
     #region Private Variables
-    [SerializeField] private float _currStamina;
-    //private GameObject _sliderObj;
     [SerializeField] private Slider _staminaSlider;
+    [SerializeField] private float _currStamina;
     private float _currSpeed;
     private CharacterController2D _charController;
     private float _horizontal;
@@ -48,25 +40,19 @@ public class PlayerController : MonoBehaviour
     #region Events
     void OnEnable()
     {
-        GameManagerLvl.OnSliderSpawn += OnSliderSpawnEventReceived;
+        _staminaSlider = GameObject.FindGameObjectWithTag("Stamina_Slider").GetComponent<Slider>();
     }
 
     void OnDisable()
     {
-        GameManagerLvl.OnSliderSpawn -= OnSliderSpawnEventReceived;
-    }
-
-    void OnDestroy()
-    {
-        GameManagerLvl.OnSliderSpawn -= OnSliderSpawnEventReceived;
+        _staminaSlider = null;
     }
     #endregion
 
     void Start()
     {
-        Intialise();
         _charController = GetComponent<CharacterController2D>();
-        _staminaSlider = GetComponentInChildren<Slider>();
+        Intialise();
     }
 
     void Update()
@@ -75,8 +61,6 @@ public class PlayerController : MonoBehaviour
             PlayerMovement();
         else
             _charController.Move(0, false, false);
-
-        //_sliderObj.transform.position = transform.position;
     }
     #endregion
 
@@ -88,6 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         _currSpeed = plyStatsData.speed;
         _currStamina = startingStamina;
+        _staminaSlider.value = _currStamina;
     }
 
     /// <summary>
@@ -126,12 +111,6 @@ public class PlayerController : MonoBehaviour
             _isJumping = true;
     }
     #endregion
-
-    void OnSliderSpawnEventReceived(GameObject obj)
-    {
-        //_sliderObj = Instantiate(obj, transform.position + sliderOffset, Quaternion.identity);
-        //_staminaSlider = _sliderObj.GetComponentInChildren<Slider>();
-    }
 
     #endregion
 }

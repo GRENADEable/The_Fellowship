@@ -87,26 +87,33 @@ public class GameManagerLvl : MonoBehaviour
     private GameObject firstSelectedPauseButton;
     #endregion
 
-    #region Stamina UI
-    [Space, Header("Stamina UI")]
-    [SerializeField]
-    [Tooltip("Stamina Slider Prefab")]
-    private GameObject staminaPrefab;
+    #region Events
+    public delegate void SendEventsObj(GameObject obj);
+    /// <summary>
+    /// Event sent from GameMangerLvl to CamFollow Script;
+    /// This just sends the GameObject of the player to refer at the Cinemachine Camera;
+    /// </summary>
+    public static event SendEventsObj OnCharSpawn;
     #endregion
 
-    public delegate void SendEventsObj(GameObject obj);
-    public static event SendEventsObj OnCharSpawn;
-    public static event SendEventsObj OnSliderSpawn;
     #endregion
 
     #region Private Variables
+    [Header("Switch Player Panel")]
     private List<PlayerStatsData> _currCharSelection = new List<PlayerStatsData>();
     private List<Button> _chooseButtons = new List<Button>();
     private List<Button> _switchButtons = new List<Button>();
+
     private int _currSelectedPlayers;
     private PlayerInput _plyInput;
+
+    [Header("UI")]
     private GameObject _currActivePlayer;
     private GameObject _currActivePlayerButton;
+
+    [Header("Player References")]
+    private Transform _currPlayerPos;
+    private List<GameObject> _spawnedCharObjs = new List<GameObject>();
     #endregion
 
     #region Unity Callbacks
@@ -240,11 +247,17 @@ public class GameManagerLvl : MonoBehaviour
     /// </summary>
     public void OnClick_StartGame()
     {
-        GameObject charObj = Instantiate(_currCharSelection[0].playerPrefab, playerSpawn.position, Quaternion.identity);
-        OnCharSpawn?.Invoke(charObj);
-        _currActivePlayer = charObj;
+        for (int i = 0; i < _currCharSelection.Count; i++)
+        {
+            GameObject charObj = Instantiate(_currCharSelection[i].playerPrefab, playerSpawn.position, Quaternion.identity);
+            _spawnedCharObjs.Add(charObj);
+            _spawnedCharObjs[i].SetActive(false);
+        }
 
-        OnSliderSpawn?.Invoke(staminaPrefab);
+        _spawnedCharObjs[0].SetActive(true);
+        _currPlayerPos = _spawnedCharObjs[0].transform;
+        OnCharSpawn?.Invoke(_spawnedCharObjs[0]);
+        _currActivePlayer = _spawnedCharObjs[0];
 
         choosePanel.SetActive(false);
         gmData.ChangeGameState("Game");
@@ -294,13 +307,18 @@ public class GameManagerLvl : MonoBehaviour
     /// <param name="index"> Index used to access the selected players in the list of Scriptable Objects; </param>
     void SwitchToNewPlayer(int index)
     {
-        GameObject charObj = Instantiate(_currCharSelection[index].playerPrefab, playerSpawn.position, Quaternion.identity);
-        OnCharSpawn?.Invoke(charObj);
-        _currActivePlayer = charObj;
+        for (int i = 0; i < _spawnedCharObjs.Count; i++)
+        {
+            _spawnedCharObjs[i].SetActive(false);
+            _spawnedCharObjs[i].transform.position = _currPlayerPos.position;
+        }
+
+        _spawnedCharObjs[index].SetActive(true);
+        OnCharSpawn?.Invoke(_spawnedCharObjs[index]);
+
+        _currActivePlayer = _spawnedCharObjs[index];
         _currActivePlayerButton = _switchButtons[index].gameObject;
-
-        OnSliderSpawn?.Invoke(staminaPrefab);
-
+        _currPlayerPos = _spawnedCharObjs[index].transform;
     }
     #endregion
 
@@ -370,9 +388,6 @@ public class GameManagerLvl : MonoBehaviour
     /// <param name="index"> Index used to check the scriptable object list </param>
     void OnPlayerSwitchSelectedEventReceived(int index, GameObject obj)
     {
-        Destroy(_currActivePlayer);
-        _currActivePlayer = null;
-
         SwitchToNewPlayer(index);
 
         switchPanel.SetActive(false);
