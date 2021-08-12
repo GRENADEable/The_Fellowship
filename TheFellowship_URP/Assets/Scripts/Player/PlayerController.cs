@@ -26,8 +26,8 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Private Variables
-    [SerializeField] private Slider _staminaSlider;
-    [SerializeField] private float _currStamina;
+    private Slider _staminaSlider;
+    private float _currStamina;
     private float _currSpeed;
     private CharacterController2D _charController;
     private float _horizontal;
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     void OnEnable()
     {
         _staminaSlider = GameObject.FindGameObjectWithTag("Stamina_Slider").GetComponent<Slider>();
+        RuntimeIntialise();
     }
 
     void OnDisable()
@@ -49,29 +50,43 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+    void Awake()
+    {
+        _currStamina = startingStamina;
+    }
+
     void Start()
     {
         _charController = GetComponent<CharacterController2D>();
-        Intialise();
+        _currSpeed = plyStatsData.speed;
+        //Intialise();
     }
 
     void Update()
     {
         if (gmData.currGameState == GameManagerData.GameState.Game)
+        {
             PlayerMovement();
+            StaminaCheck();
+        }
         else
             _charController.Move(0, false, false);
     }
     #endregion
 
     #region My Functions
+    ///// <summary>
+    ///// Intialise variables from ScriptableObject Data;
+    ///// </summary>
+    //void Intialise()
+    //{
+    //}
+
     /// <summary>
-    /// Intialise variables from ScriptableObject Data;
+    /// Intialise variables on runtime;
     /// </summary>
-    void Intialise()
+    void RuntimeIntialise()
     {
-        _currSpeed = plyStatsData.speed;
-        _currStamina = startingStamina;
         _staminaSlider.value = _currStamina;
     }
 
@@ -83,6 +98,15 @@ public class PlayerController : MonoBehaviour
         _moveDirection = new Vector2(_horizontal, 0f).normalized;
         _charController.Move(_moveDirection.x * Time.fixedDeltaTime * _currSpeed, false, _isJumping);
         _isJumping = false;
+    }
+
+    void StaminaCheck()
+    {
+        if (_moveDirection != Vector2.zero || !_charController.m_Grounded)
+        {
+            _currStamina -= Time.deltaTime;
+            _staminaSlider.value = _currStamina;
+        }
     }
     #endregion
 

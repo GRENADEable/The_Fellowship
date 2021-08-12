@@ -451,7 +451,6 @@ MonoBehaviour:
   - {fileID: 713700268}
   - {fileID: 1852441833}
   firstSelectedPauseButton: {fileID: 713700267}
-  _spawnedCharObjs: []
 --- !u!4 &131855958
 Transform:
   m_ObjectHideFlags: 0
@@ -6220,7 +6219,7 @@ GameObject:
   - component: {fileID: 1857521968}
   - component: {fileID: 1857521970}
   - component: {fileID: 1857521969}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Cam_Confine_Col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
