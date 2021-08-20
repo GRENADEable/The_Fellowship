@@ -5103,6 +5103,7 @@ GameObject:
   - component: {fileID: 1183828052}
   - component: {fileID: 1183828054}
   - component: {fileID: 1183828053}
+  - component: {fileID: 1183828055}
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
@@ -7618,6 +7619,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1183828055
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183828051}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &1210207458
 GameObject:
   m_ObjectHideFlags: 3
@@ -7931,6 +7948,7 @@ GameObject:
   - component: {fileID: 1989761373}
   - component: {fileID: 1989761375}
   - component: {fileID: 1989761374}
+  - component: {fileID: 1989761376}
   m_Layer: 0
   m_Name: BackGround
   m_TagString: Untagged
@@ -11441,6 +11459,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1989761376
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989761372}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1 &2052707052
 GameObject:
   m_ObjectHideFlags: 0
