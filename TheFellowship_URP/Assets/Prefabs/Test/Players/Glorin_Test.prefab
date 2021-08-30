@@ -62,7 +62,7 @@ Transform:
   m_GameObject: {fileID: 5916058610567399638}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9223, y: 1.8813, z: 1}
+  m_LocalScale: {x: 0.8, y: 1.8, z: 1}
   m_Children:
   - {fileID: 5916058610714957990}
   - {fileID: 5916058609932786553}
@@ -283,9 +283,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: -0.26}
   serializedVersion: 2
-  m_Radius: 0.2955416
+  m_Radius: 0.23731986
 --- !u!114 &5916058610567399593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +308,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 5916058609932786553}
   m_CeilingCheck: {fileID: 5916058610714957990}
   m_CrouchDisableCollider: {fileID: 0}
+  m_Grounded: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -329,8 +330,6 @@ MonoBehaviour:
   gmData: {fileID: 11400000, guid: df9621a4840cff2478822b611a7ad63f, type: 2}
   plyStatsData: {fileID: 11400000, guid: ccd4cbc14bea9a74eb969ded2ee39b30, type: 2}
   startingStamina: 30
-  _staminaSlider: {fileID: 0}
-  _currStamina: 0
 --- !u!1 &5916058610714957985
 GameObject:
   m_ObjectHideFlags: 0

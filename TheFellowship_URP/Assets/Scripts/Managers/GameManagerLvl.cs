@@ -57,8 +57,16 @@ public class GameManagerLvl : MonoBehaviour
     #region Game Session
     [Space, Header("Game Session")]
     [SerializeField]
-    [Tooltip("Trasnform component for spawning players")]
+    [Tooltip("Transform component for spawning players")]
     private Transform playerSpawn;
+
+    //[SerializeField]
+    //[Tooltip("")]
+    //private Slider staminaSlider;
+
+    //[SerializeField]
+    //[Tooltip("")]
+    //private float startingStamina = 30f;
     #endregion
 
     #region Switch Player Panel
@@ -100,7 +108,7 @@ public class GameManagerLvl : MonoBehaviour
 
     #region Private Variables
     [Header("Switch Player Panel")]
-    private List<PlayerStatsData> _currCharSelection = new List<PlayerStatsData>();
+    [SerializeField] private List<PlayerStatsData> _currCharSelection = new List<PlayerStatsData>();
     private List<Button> _chooseButtons = new List<Button>();
     private List<Button> _switchButtons = new List<Button>();
 
@@ -114,6 +122,10 @@ public class GameManagerLvl : MonoBehaviour
     [Header("Player References")]
     private Transform _currPlayerPos;
     private List<GameObject> _spawnedCharObjs = new List<GameObject>();
+    //[SerializeField] private int _currPlayerIndex;
+
+    //[Header("Player Stamina")]
+    //[SerializeField] private List<float> _currStaminas = new List<float>();
     #endregion
 
     #region Unity Callbacks
@@ -157,7 +169,8 @@ public class GameManagerLvl : MonoBehaviour
 
     void Update()
     {
-
+        //if (gmData.currGameState == GameManagerData.GameState.Game)
+        //    StaminaCheck();
     }
     #endregion
 
@@ -252,17 +265,21 @@ public class GameManagerLvl : MonoBehaviour
             GameObject charObj = Instantiate(_currCharSelection[i].playerPrefab, playerSpawn.position, Quaternion.identity);
             _spawnedCharObjs.Add(charObj);
             _spawnedCharObjs[i].SetActive(false);
+            //_currStaminas.Add(startingStamina);
         }
 
         _spawnedCharObjs[0].SetActive(true);
         _currPlayerPos = _spawnedCharObjs[0].transform;
         OnCharSpawn?.Invoke(_spawnedCharObjs[0]);
         _currActivePlayer = _spawnedCharObjs[0];
+        //_currPlayerIndex = 0;
 
         choosePanel.SetActive(false);
         gmData.ChangeGameState("Game");
         _plyInput.enabled = true;
+
         SelectedPlayers();
+        //StaminaSwitch();
     }
     #endregion
 
@@ -320,6 +337,26 @@ public class GameManagerLvl : MonoBehaviour
         _currActivePlayerButton = _switchButtons[index].gameObject;
         _currPlayerPos = _spawnedCharObjs[index].transform;
     }
+    #endregion
+
+    #region Player Stamina
+    //void StaminaCheck()
+    //{
+    //    if (_spawnedCharObjs[_currPlayerIndex].activeInHierarchy)
+    //    {
+    //        _currStaminas[_currPlayerIndex] -= Time.deltaTime;
+    //        staminaSlider.value = _currStaminas[_currPlayerIndex];
+    //    }
+    //    else
+    //    {
+    //        _currStaminas[_currPlayerIndex] += Time.deltaTime;
+    //    }
+    //}
+
+    //void StaminaSwitch()
+    //{
+    //    staminaSlider.value = _currStaminas[_currPlayerIndex];
+    //}
     #endregion
 
     #endregion
@@ -389,6 +426,8 @@ public class GameManagerLvl : MonoBehaviour
     void OnPlayerSwitchSelectedEventReceived(int index, GameObject obj)
     {
         SwitchToNewPlayer(index);
+        //_currPlayerIndex = index;
+        //StaminaSwitch();
 
         switchPanel.SetActive(false);
         gmData.ChangeGameState("Game");

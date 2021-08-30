@@ -443,6 +443,8 @@ MonoBehaviour:
   buttonPos: {fileID: 1894508210}
   startButton: {fileID: 284594992}
   playerSpawn: {fileID: 273986925}
+  staminaSlider: {fileID: 8540974213677285159}
+  startingStamina: 30
   switchPanel: {fileID: 534978538}
   switchButtonPrefab: {fileID: 1995513110145579396, guid: 9fe3011e9d0668447ac23eb338ad8bd0, type: 3}
   switchButtonPos: {fileID: 2144090224}
@@ -451,6 +453,9 @@ MonoBehaviour:
   - {fileID: 713700268}
   - {fileID: 1852441833}
   firstSelectedPauseButton: {fileID: 713700267}
+  _currCharSelection: []
+  _currPlayerIndex: 0
+  _currStaminas: []
 --- !u!4 &131855958
 Transform:
   m_ObjectHideFlags: 0
@@ -1060,7 +1065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 273986925}
   m_Layer: 0
-  m_Name: P1_Spawn
+  m_Name: Player_Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

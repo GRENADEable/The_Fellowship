@@ -9738,6 +9738,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Amgam_Test
       objectReference: {fileID: 0}
+    - target: {fileID: 5916058610567399638, guid: 7c13ea5fbce156e45a9dd4da4c06ca1a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c13ea5fbce156e45a9dd4da4c06ca1a, type: 3}
 --- !u!4 &1173375611 stripped

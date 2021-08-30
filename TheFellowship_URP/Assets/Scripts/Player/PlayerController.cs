@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     #region Events
     void OnEnable()
     {
-        //_staminaSlider = GameObject.FindGameObjectWithTag("Stamina_Slider").GetComponent<Slider>();
+        _staminaSlider = GameObject.FindGameObjectWithTag("Stamina_Slider").GetComponent<Slider>();
         RuntimeIntialise();
     }
 
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void RuntimeIntialise()
     {
-        //_staminaSlider.value = _currStamina;
+        _staminaSlider.value = _currStamina;
     }
 
     /// <summary>
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
         if (_moveDirection != Vector2.zero || !_charController.m_Grounded)
         {
             _currStamina -= Time.deltaTime;
-            //_staminaSlider.value = _currStamina;
+            _staminaSlider.value = _currStamina;
         }
     }
     #endregion
