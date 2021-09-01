@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: Braevor
   playerWeapon: Sword
   strength: 3
-  speed: 50
+  speed: 33
   atkRange: 1
   atkRate: 3

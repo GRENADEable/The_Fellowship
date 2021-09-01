@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour
 
     #region Private Variables
     private Slider _staminaSlider;
-    private float _currStamina;
-    private float _currSpeed;
+    [SerializeField] private float _currStamina;
+    [SerializeField] private float _currSpeed;
     private CharacterController2D _charController;
     private float _horizontal;
     private Vector2 _moveDirection;

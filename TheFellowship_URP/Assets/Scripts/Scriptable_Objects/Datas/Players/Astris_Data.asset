@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: Astris
   playerWeapon: Spear
   strength: 3
-  speed: 50
+  speed: 33
   atkRange: 2
   atkRate: 3

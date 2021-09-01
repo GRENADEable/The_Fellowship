@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: Harbard
   playerWeapon: Light Spell
   strength: 2
-  speed: 50
+  speed: 33
   atkRange: 3
   atkRate: 2

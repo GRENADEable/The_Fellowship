@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: Eldwyn
   playerWeapon: Animal Spell
   strength: 2
-  speed: 60
+  speed: 36
   atkRange: 3
   atkRate: 3

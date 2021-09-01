@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: Aurora
   playerWeapon: Prayer Spell
   strength: 1
-  speed: 50
+  speed: 33
   atkRange: 2
   atkRate: 3

@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: Haarmor
   playerWeapon: Spirit Sword
   strength: 5
-  speed: 50
+  speed: 33
   atkRange: 2
   atkRate: 2

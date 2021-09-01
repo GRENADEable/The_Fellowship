@@ -16575,7 +16575,7 @@ MonoBehaviour:
   pausePanel: {fileID: 951924653}
   fadeBG: {fileID: 744297607}
   choosePanel: {fileID: 224809055}
-  totalSelectedPlayers: 3
+  totalSelectedPlayers: 4
   buttonPrefab: {fileID: 1995513110145579396, guid: 32a20224d5a957a48b23d586f7a35233, type: 3}
   buttonPos: {fileID: 129740314}
   startButton: {fileID: 1228080158}

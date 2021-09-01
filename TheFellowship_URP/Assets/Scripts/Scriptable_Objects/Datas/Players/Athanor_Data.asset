@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: Athanor
   playerWeapon: Fire Spell
   strength: 3
-  speed: 65
+  speed: 39
   atkRange: 4
   atkRate: 3

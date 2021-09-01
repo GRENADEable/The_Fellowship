@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: Amgam
   playerWeapon: Fist
   strength: 5
-  speed: 40
+  speed: 30
   atkRange: 1
   atkRate: 1

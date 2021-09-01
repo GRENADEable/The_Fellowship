@@ -17,6 +17,6 @@ MonoBehaviour:
   playerName: Glorin
   playerWeapon: Mech Fist
   strength: 5
-  speed: 40
+  speed: 30
   atkRange: 3
   atkRate: 1
