@@ -163,7 +163,19 @@ MonoBehaviour:
     m_ActionId: 570708b3-6295-4bc7-b187-f5aadc0f33f5
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5916058610567399592}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: f22c7248-1d42-4105-adef-14884854cfdd
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -330,6 +342,8 @@ MonoBehaviour:
   gmData: {fileID: 11400000, guid: df9621a4840cff2478822b611a7ad63f, type: 2}
   plyStatsData: {fileID: 11400000, guid: e811146b093f4114aa2d9b7d00b425f4, type: 2}
   startingStamina: 30
+  _currStamina: 0
+  _currSpeed: 0
 --- !u!1 &5916058610714957985
 GameObject:
   m_ObjectHideFlags: 0

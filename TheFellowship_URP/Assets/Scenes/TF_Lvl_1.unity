@@ -16588,7 +16588,7 @@ MonoBehaviour:
   - {fileID: 1302532802}
   - {fileID: 2131422469}
   firstSelectedPauseButton: {fileID: 1302532801}
-  _currCharSelection: []
+  _currActivePlayerIndex: 0
 --- !u!114 &1686592491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16676,7 +16676,7 @@ GameObject:
   - component: {fileID: 1718020993}
   - component: {fileID: 1718020992}
   m_Layer: 0
-  m_Name: Global Light 2D
+  m_Name: Global_Light_2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

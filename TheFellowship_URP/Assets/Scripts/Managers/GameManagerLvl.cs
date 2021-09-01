@@ -59,14 +59,6 @@ public class GameManagerLvl : MonoBehaviour
     [SerializeField]
     [Tooltip("Transform component for spawning players")]
     private Transform playerSpawn;
-
-    //[SerializeField]
-    //[Tooltip("")]
-    //private Slider staminaSlider;
-
-    //[SerializeField]
-    //[Tooltip("")]
-    //private float startingStamina = 30f;
     #endregion
 
     #region Switch Player Panel
@@ -96,6 +88,8 @@ public class GameManagerLvl : MonoBehaviour
     #endregion
 
     #region Events
+
+    #region GameObject
     public delegate void SendEventsObj(GameObject obj);
     /// <summary>
     /// Event sent from GameMangerLvl to CamFollow Script;
@@ -104,11 +98,18 @@ public class GameManagerLvl : MonoBehaviour
     public static event SendEventsObj OnCharSpawn;
     #endregion
 
+    #region Int
+    public delegate void SendEventsInt();
+    public static event SendEventsInt OnStaminaChange;
+    #endregion
+
+    #endregion
+
     #endregion
 
     #region Private Variables
     [Header("Switch Player Panel")]
-    [SerializeField] private List<PlayerStatsData> _currCharSelection = new List<PlayerStatsData>();
+    private List<PlayerStatsData> _currCharSelection = new List<PlayerStatsData>();
     private List<Button> _chooseButtons = new List<Button>();
     private List<Button> _switchButtons = new List<Button>();
 
@@ -122,10 +123,10 @@ public class GameManagerLvl : MonoBehaviour
     [Header("Player References")]
     private Transform _currPlayerPos;
     private List<GameObject> _spawnedCharObjs = new List<GameObject>();
-    //[SerializeField] private int _currPlayerIndex;
+    [SerializeField] private int _currActivePlayerIndex;
 
-    //[Header("Player Stamina")]
-    //[SerializeField] private List<float> _currStaminas = new List<float>();
+    //[Header("Stamina")]
+    //[SerializeField] private List<float> _playerStaminas = new List<float>();
     #endregion
 
     #region Unity Callbacks
@@ -169,8 +170,7 @@ public class GameManagerLvl : MonoBehaviour
 
     void Update()
     {
-        //if (gmData.currGameState == GameManagerData.GameState.Game)
-        //    StaminaCheck();
+
     }
     #endregion
 
@@ -189,6 +189,8 @@ public class GameManagerLvl : MonoBehaviour
             _chooseButtons[i].interactable = true;
 
         _currCharSelection.Clear();
+        //_playerStaminas.Clear();
+
         startButton.interactable = false;
     }
 
@@ -207,7 +209,6 @@ public class GameManagerLvl : MonoBehaviour
             select.index = plyStatDatas[i].index;
 
             _chooseButtons.Add(buttonObj.GetComponent<Button>());
-
         }
     }
     #endregion
@@ -265,21 +266,19 @@ public class GameManagerLvl : MonoBehaviour
             GameObject charObj = Instantiate(_currCharSelection[i].playerPrefab, playerSpawn.position, Quaternion.identity);
             _spawnedCharObjs.Add(charObj);
             _spawnedCharObjs[i].SetActive(false);
-            //_currStaminas.Add(startingStamina);
         }
 
         _spawnedCharObjs[0].SetActive(true);
         _currPlayerPos = _spawnedCharObjs[0].transform;
         OnCharSpawn?.Invoke(_spawnedCharObjs[0]);
         _currActivePlayer = _spawnedCharObjs[0];
-        //_currPlayerIndex = 0;
+        _currActivePlayerIndex = 0;
 
         choosePanel.SetActive(false);
         gmData.ChangeGameState("Game");
         _plyInput.enabled = true;
 
         SelectedPlayers();
-        //StaminaSwitch();
     }
     #endregion
 
@@ -339,26 +338,6 @@ public class GameManagerLvl : MonoBehaviour
     }
     #endregion
 
-    #region Player Stamina
-    //void StaminaCheck()
-    //{
-    //    if (_spawnedCharObjs[_currPlayerIndex].activeInHierarchy)
-    //    {
-    //        _currStaminas[_currPlayerIndex] -= Time.deltaTime;
-    //        staminaSlider.value = _currStaminas[_currPlayerIndex];
-    //    }
-    //    else
-    //    {
-    //        _currStaminas[_currPlayerIndex] += Time.deltaTime;
-    //    }
-    //}
-
-    //void StaminaSwitch()
-    //{
-    //    staminaSlider.value = _currStaminas[_currPlayerIndex];
-    //}
-    #endregion
-
     #endregion
 
     #region Events
@@ -407,6 +386,7 @@ public class GameManagerLvl : MonoBehaviour
     void OnPlayerSelectedEventReceived(int index)
     {
         _currCharSelection.Add(plyStatDatas[index]);
+        //_playerStaminas.Add(0f);
         _currSelectedPlayers++;
 
         if (_currSelectedPlayers >= totalSelectedPlayers)
@@ -426,8 +406,7 @@ public class GameManagerLvl : MonoBehaviour
     void OnPlayerSwitchSelectedEventReceived(int index, GameObject obj)
     {
         SwitchToNewPlayer(index);
-        //_currPlayerIndex = index;
-        //StaminaSwitch();
+        _currActivePlayerIndex = index;
 
         switchPanel.SetActive(false);
         gmData.ChangeGameState("Game");

@@ -19,10 +19,17 @@ public class PlayerController : MonoBehaviour
     private PlayerStatsData plyStatsData;
     #endregion
 
+    #region Stats
     [Space, Header("Player Stats")]
     [SerializeField]
     [Tooltip("Starting stamina of the Player")]
     private float startingStamina = 30f;
+    #endregion
+
+    #region Events
+
+    #endregion
+
     #endregion
 
     #region Private Variables
@@ -37,6 +44,8 @@ public class PlayerController : MonoBehaviour
 
     #region Unity Callbacks
 
+    void Awake() => _currStamina = startingStamina;
+
     #region Events
     void OnEnable()
     {
@@ -48,18 +57,16 @@ public class PlayerController : MonoBehaviour
     {
         _staminaSlider = null;
     }
-    #endregion
 
-    void Awake()
+    void OnDestroy()
     {
-        _currStamina = startingStamina;
     }
+    #endregion
 
     void Start()
     {
         _charController = GetComponent<CharacterController2D>();
         _currSpeed = plyStatsData.speed;
-        //Intialise();
     }
 
     void Update()
@@ -75,20 +82,10 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region My Functions
-    ///// <summary>
-    ///// Intialise variables from ScriptableObject Data;
-    ///// </summary>
-    //void Intialise()
-    //{
-    //}
-
     /// <summary>
-    /// Intialise variables on runtime;
+    /// Intialises stamina slider value with the current stamina;
     /// </summary>
-    void RuntimeIntialise()
-    {
-        _staminaSlider.value = _currStamina;
-    }
+    void RuntimeIntialise() => _staminaSlider.value = _currStamina;
 
     /// <summary>
     /// Function to move the Player on one Axis;
@@ -100,9 +97,12 @@ public class PlayerController : MonoBehaviour
         _isJumping = false;
     }
 
+    /// <summary>
+    /// Checks the stamina depeltion when the player is moving;
+    /// </summary>
     void StaminaCheck()
     {
-        if (_moveDirection != Vector2.zero || !_charController.m_Grounded)
+        if (_moveDirection != Vector2.zero /*|| !_charController.m_Grounded*/)
         {
             _currStamina -= Time.deltaTime;
             _staminaSlider.value = _currStamina;
@@ -133,6 +133,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && gmData.currGameState == GameManagerData.GameState.Game)
             _isJumping = true;
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.started && gmData.currGameState == GameManagerData.GameState.Game)
+            Debug.Log("Attack");
     }
     #endregion
 
