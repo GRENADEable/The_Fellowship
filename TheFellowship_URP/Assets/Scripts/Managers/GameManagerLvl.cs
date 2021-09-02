@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
@@ -22,9 +23,6 @@ public class GameManagerLvl : MonoBehaviour
 
     #region Panels
     [Space, Header("Panels")]
-    [SerializeField]
-    [Tooltip("Add your pause panel GameObject here")]
-    private GameObject pausePanel;
 
     [SerializeField]
     [Tooltip("Fade Background with Animator Component")]
@@ -76,11 +74,25 @@ public class GameManagerLvl : MonoBehaviour
     private Transform switchButtonPos;
     #endregion
 
+    #region HUD UI
+    [Space, Header("HUD UI")]
+    [SerializeField]
+    [Tooltip("Add your HUD panel GameObject here")]
+    private GameObject hudPanel;
+
+    [SerializeField]
+    private TextMeshProUGUI playerNameText;
+    #endregion
+
     #region Pause UI
     [Space, Header("Pause UI")]
     [SerializeField]
+    [Tooltip("Add your pause panel GameObject here")]
+    private GameObject pausePanel;
+
+    [SerializeField]
     [Tooltip("All the Buttons in the pause panel")]
-    private Button[] gameButtons;
+    private Button[] pauseButtons;
 
     [SerializeField]
     [Tooltip("First Button to be highlighted when the game is paused")]
@@ -96,11 +108,6 @@ public class GameManagerLvl : MonoBehaviour
     /// This just sends the GameObject of the player to refer at the Cinemachine Camera;
     /// </summary>
     public static event SendEventsObj OnCharSpawn;
-    #endregion
-
-    #region Int
-    public delegate void SendEventsInt();
-    public static event SendEventsInt OnStaminaChange;
     #endregion
 
     #endregion
@@ -225,6 +232,12 @@ public class GameManagerLvl : MonoBehaviour
         pausePanel.SetActive(false);
     }
 
+    public void OnClick_RestartGame()
+    {
+        StartCoroutine(RestartDelay());
+        DisableGameButtons();
+    }
+
     /// <summary>
     /// Tied to Return_Map_Button;
     /// This just goes to the map scene when clicked;
@@ -249,8 +262,8 @@ public class GameManagerLvl : MonoBehaviour
     /// </summary>
     void DisableGameButtons()
     {
-        for (int i = 0; i < gameButtons.Length; i++)
-            gameButtons[i].interactable = false;
+        for (int i = 0; i < pauseButtons.Length; i++)
+            pauseButtons[i].interactable = false;
     }
     #endregion
 
@@ -279,6 +292,8 @@ public class GameManagerLvl : MonoBehaviour
         _plyInput.enabled = true;
 
         SelectedPlayers();
+
+        playerNameText.text = _currCharSelection[0].playerName;
     }
     #endregion
 
@@ -353,6 +368,7 @@ public class GameManagerLvl : MonoBehaviour
         {
             gmData.ChangeGameState("Paused");
             pausePanel.SetActive(true);
+            hudPanel.SetActive(false);
 
             InputManager.ToggleActionMap(InputManager.inputActions.UI);
             EventSystem.current.SetSelectedGameObject(null);
@@ -407,6 +423,7 @@ public class GameManagerLvl : MonoBehaviour
     {
         SwitchToNewPlayer(index);
         _currActivePlayerIndex = index;
+        playerNameText.text = _currCharSelection[index].playerName;
 
         switchPanel.SetActive(false);
         gmData.ChangeGameState("Game");
@@ -423,6 +440,17 @@ public class GameManagerLvl : MonoBehaviour
         fadeBG.Play("Fade_Out");
         yield return new WaitForSeconds(1f);
         gmData.ChangeMap(0);
+    }
+
+    /// <summary>
+    /// Restarts the current map;
+    /// </summary>
+    /// <returns> Float delay for yield; </returns>
+    IEnumerator RestartDelay()
+    {
+        fadeBG.Play("Fade_Out");
+        yield return new WaitForSeconds(1f);
+        gmData.ChangeMap(Application.loadedLevel);
     }
     #endregion
 }

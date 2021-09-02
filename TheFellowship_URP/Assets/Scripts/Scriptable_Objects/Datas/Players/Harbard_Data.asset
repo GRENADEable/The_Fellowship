@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ac5a0866760f3b40b35a9550ef1f257, type: 3}
   m_Name: Harbard_Data
   m_EditorClassIdentifier: 
-  index: 7
-  playerPrefab: {fileID: 5916058610567399638, guid: 3e87b411f86895f41bf7b0ada49a6923, type: 3}
+  index: 11
+  playerPrefab: {fileID: 5916058610567399638, guid: ea01b7905931e3547a6b0776137d5ee2, type: 3}
   playerName: Harbard
   playerWeapon: Light Spell
   strength: 2

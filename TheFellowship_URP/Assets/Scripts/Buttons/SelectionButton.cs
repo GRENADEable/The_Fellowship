@@ -5,7 +5,7 @@ using TMPro;
 public class SelectionButton : MonoBehaviour
 {
     #region Public Variables
-    [HideInInspector] public int index;
+    /*[HideInInspector]*/ public int index;
     [Tooltip("Text in the Button")] public TextMeshProUGUI buttonText;
 
     public delegate void SendEventInt(int index);
