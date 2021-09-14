@@ -16842,7 +16842,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 43be80fda3425154c844d058d83b350e, type: 2}
   fadeBG: {fileID: 744297607}
   choosePanel: {fileID: 224809055}
-  totalSelectedPlayers: 9
+  totalSelectedPlayers: 2
   buttonPrefab: {fileID: 1995513110145579396, guid: 32a20224d5a957a48b23d586f7a35233, type: 3}
   buttonPos: {fileID: 129740314}
   startButton: {fileID: 1228080158}
@@ -17573,6 +17573,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1952069996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1952069997}
+  m_Layer: 0
+  m_Name: Enemies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1952069997
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952069996}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4550643215866141448}
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1983467747
 GameObject:
   m_ObjectHideFlags: 0
@@ -20557,3 +20588,65 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1001 &4550643215866141447
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1952069997}
+    m_Modifications:
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708065580737137232, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+      propertyPath: m_Name
+      value: Lizard_1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+--- !u!4 &4550643215866141448 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2985237395245563564, guid: 4931b726b2954a04299fe29f8b6767d5, type: 3}
+  m_PrefabInstance: {fileID: 4550643215866141447}
+  m_PrefabAsset: {fileID: 0}
